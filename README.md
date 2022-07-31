@@ -2,6 +2,7 @@
 Speech recognition is the process of converting audio into text. This is commonly used in voice assistants like Alexa, Siri, etc. Python provides an API called SpeechRecognition to allow us to convert audio into text for further processing. In this article, we will look at converting large or long audio files into text using the SpeechRecognition API in python.
 
 **Modules needed**
+
 Subprocess:- This module is used to get system subprocess details used in various commands i.e Shutdown, Sleep, etc. This module comes built-in with Python. 
  
 WolframAlpha:- It is used to compute expert-level answers using Wolfram’s algorithms, knowledgebase and AI technology. To install this module type the below command in the terminal.
@@ -33,6 +34,7 @@ BeautifulSoup: Beautiful Soup is a library that makes it easy to scrape informat
 
 **Install these modules one by one by using the following statements on terminal :- 
 **
+
 pip install pyjokes
 
 pip install wolframalpha
@@ -148,7 +150,6 @@ def sendEmail(to, content):
 	server.ehlo()
 	server.starttls()
   
-  # Enable low security in gmail
 	server.login('your email id', 'your email password')
 	server.sendmail('your email id', to, content)
 	server.close()
@@ -160,8 +161,6 @@ def sendEmail(to, content):
   if __name__ == '__main__':
 	clear = lambda: os.system('cls')
 	
-	# This Function will clean any
-	# command before execution of this python file
 	clear()
 	wishMe()
 	username()
@@ -170,10 +169,6 @@ def sendEmail(to, content):
 		
 		query = takeCommand().lower()
 		
-		# All the commands said by user will be
-		# stored here in 'query' and will be
-		# converted to lower case for easily
-		# recognition of command
 		if 'wikipedia' in query:
 			speak('Searching Wikipedia...')
 			query = query.replace("wikipedia", "")
@@ -196,7 +191,6 @@ def sendEmail(to, content):
 
 		elif 'play music' in query or "play song" in query:
 			speak("Here you go with music")
-			# music_dir = "G:\\Song"
 			music_dir = "C:\\Users\\GAURAV\\Music"
 			songs = os.listdir(music_dir)
 			print(songs)
@@ -302,10 +296,7 @@ def sendEmail(to, content):
 			speak("I was created as a Minor project by Mister Gaurav ")
 
 		elif 'change background' in query:
-			ctypes.windll.user32.SystemParametersInfoW(20,
-													0,
-													"Location of wallpaper",
-													0)
+			ctypes.windll.user32.SystemParametersInfoW(20,0,"Location of wallpaper",0)
 			speak("Background changed successfully")
 
 		elif 'open bluestack' in query:
@@ -315,7 +306,7 @@ def sendEmail(to, content):
 		elif 'news' in query:
 			
 			try:
-				jsonObj = urlopen('''https://newsapi.org / v1 / articles?source = the-times-of-india&sortBy = top&apiKey =\\times of India Api key\\''')
+			     jsonObj = urlopen('''https://newsapi.org / v1 / articles?source = the-times-of-india&sortBy = top&apiKey =\\times of India Api key\\''')
 				data = json.load(jsonObj)
 				i = 1
 				
@@ -402,12 +393,10 @@ def sendEmail(to, content):
 				
 				total_length = int(r.headers.get('content-length'))
 				
-				for ch in progress.bar(r.iter_content(chunk_size = 2391975),
-									expected_size =(total_length / 1024) + 1):
+				for ch in progress.bar(r.iter_content(chunk_size = 2391975),expected_size =(total_length / 1024) + 1):
 					if ch:
 					Pypdf.write(ch)
 					
-		# NPPR9-FWDCX-D2C8J-H872K-2YT43
 		elif "jarvis" in query:
 			
 			wishMe()
@@ -416,8 +405,6 @@ def sendEmail(to, content):
 
 		elif "weather" in query:
 			
-			# Google Open weather website
-			# to get API of Open weather
 			api_key = "Api key"
 			base_url = "http://api.openweathermap.org / data / 2.5 / weather?"
 			speak(" City name ")
@@ -446,11 +433,11 @@ def sendEmail(to, content):
 				client = Client(account_sid, auth_token)
 
 				message = client.messages \
-								.create(
-									body = takeCommand(),
-									from_='Sender No',
-									to ='Receiver No'
-								)
+							.create(
+								body = takeCommand(),
+								from_='Sender No',
+								to ='Receiver No'
+							)
 
 				print(message.sid)
 
@@ -462,7 +449,6 @@ def sendEmail(to, content):
 			speak("How are you Mister")
 			speak(assname)
 
-		# most asked question from google Assistant
 		elif "will you be my gf" in query or "will you be my bf" in query:
 			speak("I'm not sure about, may be you should give me some time")
 
@@ -473,9 +459,7 @@ def sendEmail(to, content):
 			speak("It's hard to understand")
 
 		elif "what is" in query or "who is" in query:
-			
-			# Use the same API key
-			# that we have generated earlier
+		
 			client = wolframalpha.Client("API_ID")
 			res = client.query(query)
 			
